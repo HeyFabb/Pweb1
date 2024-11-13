@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0f7fa; /* Biru muda */
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+h1 {
+    text-align: center;
+    color: #00796b; /* Hijau teal */
+    border-bottom: 2px solid #f44336; /* Merah */
+    padding-bottom: 10px;
+}
+p {
+    line-height: 1.8;
+    color: #004d40; /* Hijau tua */
+}
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #ffffff; /* Putih */
+    background-color: #00796b; /* Hijau teal */
+    padding: 10px;
+    border-radius: 5px;
+}
+.text {
+    color:cadetblue;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
