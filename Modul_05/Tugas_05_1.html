@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galeri Alumni UNIKU</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .gallery img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 5px;
+        cursor: pointer;
+        display: none; /* Untuk efek fade-in */
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .modal img {
+        max-width: 80%;
+        max-height: 80%;
+        border-radius: 10px;
+      }
+
+      .modal .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        background: red;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center;">Galeri Foto Alumni UNIKU</h1>
+    <div class="gallery">
+      <img src="img_modul5/tgs1.jpg" alt="Alumni 1" />
+      <img src="img_modul5/tgs2.jpg" alt="Alumni 2" />
+      <img src="img_modul5/tgs3.jpg" alt="Alumni 3" />
+    </div>
+
+    <div class="modal">
+      <span class="close">Close</span>
+      <img src="" alt="Preview" />
+    </div>
+
+    <script src="script4.js"></script>
+  </body>
+</html>
