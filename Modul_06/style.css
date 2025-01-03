@@ -1,0 +1,20 @@
+body {
+  padding-top: 50px;
+}
+.jumbotron {
+  background: url("https://fkom.uniku.ac.id/wp-content/uploads/2023/01/Header-Home.jpg")
+    no-repeat center center;
+  background-size: cover;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(red, green, blue, alpha);
+  padding: 5rem 1rem;
+}
+.jumbotron-overlay {
+  background: rgba(red, green, blue, alpha);
+  padding: 2rem;
+  border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -ms-border-radius: 0.25rem;
+  -o-border-radius: 0.25rem;
+}
