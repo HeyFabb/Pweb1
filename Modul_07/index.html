@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manajemen Lowongan Kerja</title>
+    <script>
+      const baseUrl =
+        "https://script.google.com/macros/s/AKfycbxWgSd4pGR1cZ_QXNNB6Jbrwv8MNffw0Xpdi8S-h8PgErKjfmeR1PoUDjW8jC3YLnUOOg/exec"; // Ganti dengan URL Web App Anda
+
+      async function fetchJobs() {
+        const response = await fetch(`${baseUrl}?action=getAll`);
+        const data = await response.json();
+        displayJobs(data.jobs);
+      }
+
+      function displayJobs(jobs) {
+        const tableBody = document.getElementById("jobTableBody");
+        tableBody.innerHTML = "";
+        jobs.forEach((job) => {
+          tableBody.innerHTML += `
+            <tr>
+              <td>${job.id}</td>
+              <td>${job.title}</td>
+              <td>${job.description}</td>
+              <td>${job.company}</td>
+              <td>${job.location}</td>
+              <td>${job.salary}</td>
+              <td>
+                <button onclick="deleteJob('${job.id}')">Delete</button>
+                <button onclick="editJob('${job.id}', '${job.title}', '${job.description}', '${job.company}', '${job.location}', '${job.salary}')">Edit</button>
+              </td>
+            </tr>
+          `;
+        });
+      }
+
+      async function addJob() {
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const company = document.getElementById("company").value;
+        const location = document.getElementById("location").value;
+        const salary = document.getElementById("salary").value;
+
+        await fetch(
+          `${baseUrl}?action=add&title=${title}&description=${description}&company=${company}&location=${location}&salary=${salary}`
+        );
+        fetchJobs();
+      }
+
+      async function deleteJob(id) {
+        await fetch(`${baseUrl}?action=delete&id=${id}`);
+        fetchJobs();
+      }
+
+      function editJob(id, title, description, company, location, salary) {
+        document.getElementById("jobId").value = id;
+        document.getElementById("title").value = title;
+        document.getElementById("description").value = description;
+        document.getElementById("company").value = company;
+        document.getElementById("location").value = location;
+        document.getElementById("salary").value = salary;
+      }
+
+      async function updateJob() {
+        const id = document.getElementById("jobId").value;
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const company = document.getElementById("company").value;
+        const location = document.getElementById("location").value;
+        const salary = document.getElementById("salary").value;
+
+        await fetch(
+          `${baseUrl}?action=update&id=${id}&title=${title}&description=${description}&company=${company}&location=${location}&salary=${salary}`
+        );
+        fetchJobs();
+      }
+
+      async function searchJobs() {
+        const query = document.getElementById("search").value;
+        const response = await fetch(`${baseUrl}?action=search&query=${query}`);
+        const data = await response.json();
+        displayJobs(data.results);
+      }
+
+      window.onload = fetchJobs;
+    </script>
+  </head>
+  <body>
+    <h1>Manajemen Lowongan Kerja</h1>
+
+    <!-- Form Input -->
+    <input type="hidden" id="jobId" />
+    <label>Judul: <input type="text" id="title" /></label><br />
+    <label>Deskripsi: <input type="text" id="description" /></label><br />
+    <label>Perusahaan: <input type="text" id="company" /></label><br />
+    <label>Lokasi: <input type="text" id="location" /></label><br />
+    <label>Gaji: <input type="text" id="salary" /></label><br />
+    <button onclick="addJob()">Tambah</button>
+    <button onclick="updateJob()">Update</button>
+
+    <!-- Search -->
+    <h3>Cari Lowongan</h3>
+    <input type="text" id="search" placeholder="Cari..." />
+    <button onclick="searchJobs()">Cari</button>
+
+    <!-- Tabel Lowongan -->
+    <h3>Daftar Lowongan Kerja</h3>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Judul</th>
+          <th>Deskripsi</th>
+          <th>Perusahaan</th>
+          <th>Lokasi</th>
+          <th>Gaji</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="jobTableBody"></tbody>
+    </table>
+  </body>
+</html>
